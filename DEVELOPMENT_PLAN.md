@@ -16,7 +16,7 @@
 | Phase 4 播放 | 已完成。ExoPlayer、顺序连播、单曲循环、旋转续播、退后台暂停、屏幕常亮 |
 | Phase 5 多标签与筛选 | 已完成。多选标签面板、标签摘要、单选标签筛选、筛选失效回退 |
 | Phase 6 测试与交付 | 部分完成。16 个单元测试、Lint、Debug/Release 构建和 API 36 手工测试通过；Compose 仪器测试与 API 30/33 未覆盖 |
-| 交付物 | [`dist/VideoCoursePlayer-1.0.apk`](dist/VideoCoursePlayer-1.0.apk)，使用开发证书签名的 Release 构建；主界面支持双击返回退出 |
+| 交付物 | [v1.0.0 Release](https://github.com/guxin0123/VideoCoursePlayer/releases/tag/v1.0.0) 中的 `VideoCoursePlayer-1.0.apk`，使用开发证书签名的 Release 构建；主界面支持双击返回退出 |
 
 ### 实施中的偏差
 

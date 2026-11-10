@@ -2,7 +2,16 @@
 
 VideoCoursePlayer 是一个面向**本地课程视频**的 Android 播放器。用户首次启动时从系统相册中选择一个视频相册，之后即可在同一个界面中浏览视频、给视频打多个标签、按标签筛选，并按列表顺序连续播放或单曲循环。
 
-> **当前状态（2026-11-09）**：MVP 已实现，并在 Pixel Tablet API 36 模拟器上完成 Debug 与 Release 实测；单元测试、`lintDebug` 和 R8 Release 构建均通过。可安装 APK 位于 [`dist/VideoCoursePlayer-1.0.apk`](dist/VideoCoursePlayer-1.0.apk)。详细的实现状态与验证记录见 [开发计划](DEVELOPMENT_PLAN.md)。
+> **当前状态（2026-11-09）**：MVP 已实现，并在 Pixel Tablet API 36 模拟器上完成 Debug 与 Release 实测；单元测试、`lintDebug` 和 R8 Release 构建均通过。可安装 APK 见 [Releases](https://github.com/guxin0123/VideoCoursePlayer/releases/latest)（APK 不再纳入版本库）。详细的实现状态与验证记录见 [开发计划](DEVELOPMENT_PLAN.md)。
+
+## 下载
+
+安装包通过 [GitHub Releases](https://github.com/guxin0123/VideoCoursePlayer/releases/latest) 分发，仓库只保留源码：
+
+- [VideoCoursePlayer-1.0.apk](https://github.com/guxin0123/VideoCoursePlayer/releases/download/v1.0.0/VideoCoursePlayer-1.0.apk)（v1.0.0，约 6.6 MB）
+- Release 页面同时提供 `VideoCoursePlayer-1.0.apk.sha256` 校验文件
+
+> 该 APK 使用本机调试证书签名，仅供本地安装测试，不是应用商店发布包；正式分发请替换为自己的 Release 签名。
 
 ## 界面预览
 
@@ -240,15 +249,17 @@ Debug APK 输出路径：`app\build\outputs\apk\debug\app-debug.apk`。
 .\gradlew.bat :app:assembleRelease
 ```
 
-未签名的 Release APK 输出到 `app\build\outputs\apk\release\`。本地可安装版本会额外签名后放入 `dist\`。
+未签名的 Release APK 输出到 `app\build\outputs\apk\release\`。本地可安装版本会额外签名后放入 `dist\`（该目录已被 `.gitignore` 排除，不进版本库）。
 
 ### 安装交付包
+
+从 [Releases](https://github.com/guxin0123/VideoCoursePlayer/releases/latest) 下载 APK 到本机 `dist\` 后安装，或直接安装已有的本地签名产物：
 
 ```powershell
 adb install -r dist\VideoCoursePlayer-1.0.apk
 ```
 
-`dist\VideoCoursePlayer-1.0.apk` 是 Release 构建，为了便于本地安装使用开发调试证书签名；它不是应用商店发布包。正式发布时应替换为自己的 Release 签名。
+`dist\VideoCoursePlayer-1.0.apk` 是 Release 构建，为了便于本地安装使用开发调试证书签名；它不是应用商店发布包，也不随仓库提交，需要时从 Releases 下载或按上面的命令本地构建并签名。正式发布时应替换为自己的 Release 签名。
 
 SHA-256：
 
@@ -309,7 +320,7 @@ Android Studio 自身的插件/SDK 下载代理需要在 IDE 的 HTTP Proxy 设�
 | Phase 4 | ExoPlayer 播放与两种模式 | 已完成 |
 | Phase 5 | 多标签设置与标签筛选 | 已完成 |
 | Phase 6 | 测试、打磨、Release 构建 | 已完成（API 36；旧版本与自动化 UI 待补） |
-| 交付 | Release APK | 已产出 [`dist/VideoCoursePlayer-1.0.apk`](dist/VideoCoursePlayer-1.0.apk) |
+| 交付 | Release APK | 已发布 [v1.0.0](https://github.com/guxin0123/VideoCoursePlayer/releases/tag/v1.0.0) |
 
 ## 已知约束
 
@@ -320,7 +331,7 @@ Android Studio 自身的插件/SDK 下载代理需要在 IDE 的 HTTP Proxy 设�
 - **顺序播放到末尾停止**：不自动循环整个列表；若需要“列表循环”，可作为后续增强。
 - **标签以 MediaStore ID 关联**：文件被移出媒体库并重新索引后，历史标签可能丢失。
 - **API 36 为主验证环境**：API 30/33 的权限分支尚未在真机验证；发布前仍应补齐。
-- **Release 签名**：`dist/` 中的 APK 使用本机调试证书签名，仅适合本地安装；正式分发需替换签名。
+- **Release 签名**：Release 资产与 `dist/` 中的 APK 均使用本机调试证书签名，仅适合本地安装；正式分发需替换签名。
 - **R8 规则**：`app/src/main/keepRules/rules.keep` 保留了 `kotlin.sequences`，以避免 AGP 9 包级优化下的运行时访问错误；删除前需验证 Release。
 
 ## 文档
