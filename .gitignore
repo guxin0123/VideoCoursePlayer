@@ -1,0 +1,27 @@
+# ---- Gradle ----
+.gradle/
+.kotlin/
+build/
+
+# ---- IDE / 本地配置 ----
+.idea/
+*.iml
+captures/
+# 含机器相关的 SDK 路径，由 Android Studio 自动生成
+local.properties
+
+# ---- 构建与签名产物 ----
+*.apk
+*.aab
+*.aar
+*.ap_
+*.hprof
+*.jks
+*.keystore
+mapping/
+output-metadata.json
+
+# ---- 系统与临时文件 ----
+*.log
+.DS_Store
+Thumbs.db
